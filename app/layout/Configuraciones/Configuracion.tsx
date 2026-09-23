@@ -424,7 +424,7 @@ export default function Configuracion() {
                         />
                         <FormInput
                           label="Slogan"
-                          placeholder="Servicios y Sistemas en Computación"
+                          placeholder="Servicios"
                           value={empresaForm.slogan ?? ''}
                           onChange={setCampoEmpresa('slogan')}
                           type="text"
@@ -432,7 +432,7 @@ export default function Configuracion() {
                         />
                         <FormInput
                           label="Responsable"
-                          placeholder="LSCA. Marco Antonio Flores Durazo"
+                          placeholder="Fulanito de tal"
                           value={empresaForm.responsable ?? ''}
                           onChange={setCampoEmpresa('responsable')}
                           type="text"
@@ -448,7 +448,7 @@ export default function Configuracion() {
                         />
                         <FormInput
                           label="Dirección"
-                          placeholder="Niños Heroes #238, Puerto Peñasco, Sonora, México"
+                          placeholder="Entre calle oriente y josefa"
                           value={empresaForm.direccion ?? ''}
                           onChange={setCampoEmpresa('direccion')}
                           type="text"
@@ -464,7 +464,7 @@ export default function Configuracion() {
                         />
                         <FormInput
                           label="Teléfono"
-                          placeholder="(638) 38 3 62 43"
+                          placeholder="6338561926"
                           value={empresaForm.telefono ?? ''}
                           onChange={setCampoEmpresa('telefono')}
                           type="text"
@@ -472,7 +472,7 @@ export default function Configuracion() {
                         />
                         <FormInput
                           label="Fax"
-                          placeholder="(638) 38 3 69 20"
+                          placeholder="6338562343"
                           value={empresaForm.fax ?? ''}
                           onChange={setCampoEmpresa('fax')}
                           type="text"
@@ -480,7 +480,7 @@ export default function Configuracion() {
                         />
                         <FormInput
                           label="RFC"
-                          placeholder="FODM7110101L4"
+                          placeholder="F0DM2753179L3"
                           value={empresaForm.rfc ?? ''}
                           onChange={setCampoEmpresa('rfc')}
                           type="text"

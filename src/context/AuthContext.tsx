@@ -8,6 +8,7 @@ import { estaOnline } from '../lib/conexion';
 import { initMirrorSync } from '../lib/mirrorSync';
 import { initSyncService } from '../lib/syncService';
 import { localDb } from '../lib/localdb';
+import { esModoDemo } from '../lib/entorno';
 
 // Marca que usan las Edge Functions (update-auth-email / update-auth-password)
 // al insertar la notificación de seguridad cuando un administrador cambia el
@@ -164,6 +165,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     ultimaVerificacionRef.current = ahora;
 
+    // En modo demo, no cerramos la sesión simulada por comprobación del servidor
+    if (esModoDemo()) return;
+
     const { data: { session: sesionLocal } } = await supabase.auth.getSession();
     if (!sesionLocal) return; // ya no hay sesión local, nada que verificar
 
@@ -182,6 +186,24 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, [signOut]);
 
   useEffect(() => {
+    if (esModoDemo()) {
+      const demoUser = { id: 'demo-user-id', email: 'demo@ejemplo.com' } as User;
+      const demoPerfil: Usuario = {
+        id_perfil_info: 'demo-perfil-id',
+        auth_usuario: 'demo-user-id',
+        usuario: 'visitante',
+        nombres: 'Visitante',
+        apellido_paterno: 'Demo',
+        apellido_materno: '',
+        rol: 'administrador'
+      };
+      setSession({ access_token: 'demo-token', user: demoUser } as any);
+      setUser(demoUser);
+      setPerfil(demoPerfil);
+      setIsLoading(false);
+      return;
+    }
+
     supabase.auth.getSession().then(({ data: { session } }) => {
       // Si NO hay sesión real de Supabase pero sí hay una sesión offline
       // guardada, cargarla sin importar estaOnline(). Esto resuelve la
@@ -207,6 +229,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       if (session?.user) fetchPerfil(session.user.id, session.user.email);
       else setIsLoading(false);
     });
+
+    if (esModoDemo()) return;
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       // --- LÓGICA DE SEGURIDAD AGREGADA ---

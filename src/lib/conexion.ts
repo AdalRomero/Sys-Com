@@ -1,4 +1,4 @@
-import { esDesktop } from './entorno';
+import { esDesktop, esModoDemo } from './entorno';
 
 const INTERVALO_PING_MS = 15_000;
 const TIMEOUT_PING_MS = 5_000;
@@ -94,6 +94,7 @@ iniciarMonitor();
  * mostrar el indicador de estado.
  */
 export function estaOnline(): boolean {
+  if (esModoDemo()) return false;
   return online;
 }
 

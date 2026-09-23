@@ -32,3 +32,12 @@ export function esDesktop(): boolean {
 
   return false;
 }
+
+/**
+ * Indica si el sistema está ejecutándose en "Modo Demo" (público/portafolio),
+ * lo que permite visualizar la aplicación saltándose el inicio de sesión.
+ */
+export function esModoDemo(): boolean {
+  const flag = import.meta.env.VITE_MODO_DEMO;
+  return flag === 'true' || flag === true;
+}
