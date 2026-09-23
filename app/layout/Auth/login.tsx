@@ -10,18 +10,11 @@ import { estaOnline } from '../../../src/lib/conexion';
 import { localDb } from '../../../src/lib/localdb';
 import { hashPassword, generateSalt } from '../../../src/utils/crypto';
 import { useAuth } from '../../../src/context/AuthContext';
-import { useEffect } from 'react';
+import { esModoDemo } from '../../../src/lib/entorno';
 
 function Login() {
     const navigate = useNavigate();
-    const { user, setOfflineSession } = useAuth();
-
-    // Redirigir automáticamente si ya hay sesión (ej. en Modo Demo)
-    useEffect(() => {
-        if (user) {
-            navigate('/dashboard', { replace: true });
-        }
-    }, [user, navigate]);
+    const { setOfflineSession } = useAuth();
 
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
     const [errorMessage, setErrorMessage] = useState('');
@@ -42,6 +35,29 @@ function Login() {
         setErrorMessage('');
 
         try {
+            if (esModoDemo()) {
+                const demoPerfil = {
+                    id_perfil_info: 'demo-perfil-id',
+                    auth_usuario: 'demo-user-id',
+                    usuario: 'visitante',
+                    nombres: 'Visitante',
+                    apellido_paterno: 'Demo',
+                    apellido_materno: '',
+                    rol: 'administrador'
+                };
+                const offlineData = {
+                    email: email || 'demo@ejemplo.com',
+                    id: 'demo-user-id',
+                    perfil: demoPerfil,
+                    timestamp: Date.now()
+                };
+                localStorage.setItem('offline_session', JSON.stringify(offlineData));
+                setOfflineSession(offlineData);
+                setStatus('success');
+                navigate('/dashboard');
+                return;
+            }
+
             if (!estaOnline()) {
                 // Flujo Offline
                 const offlineRecord = await localDb.offline_auth.where('email').equals(email).first();
@@ -135,6 +151,14 @@ function Login() {
 
                         <h1 className="login-title">Hola Usuario!</h1>
                         <p className="login-subtitle">Bienvenido a Sys-Com</p>
+
+                        {esModoDemo() && (
+                            <Banner
+                                type="info"
+                                message="Modo Demo Activo: Ingresa con cualquier correo y contraseña para explorar la interfaz."
+                                onClose={() => {}}
+                            />
+                        )}
 
                         <Banner
                             type="error"

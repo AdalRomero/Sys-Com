@@ -186,24 +186,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, [signOut]);
 
   useEffect(() => {
-    if (esModoDemo()) {
-      const demoUser = { id: 'demo-user-id', email: 'demo@ejemplo.com' } as User;
-      const demoPerfil: Usuario = {
-        id_perfil_info: 'demo-perfil-id',
-        auth_usuario: 'demo-user-id',
-        usuario: 'visitante',
-        nombres: 'Visitante',
-        apellido_paterno: 'Demo',
-        apellido_materno: '',
-        rol: 'administrador'
-      };
-      setSession({ access_token: 'demo-token', user: demoUser } as any);
-      setUser(demoUser);
-      setPerfil(demoPerfil);
-      setIsLoading(false);
-      return;
-    }
-
     supabase.auth.getSession().then(({ data: { session } }) => {
       // Si NO hay sesión real de Supabase pero sí hay una sesión offline
       // guardada, cargarla sin importar estaOnline(). Esto resuelve la
