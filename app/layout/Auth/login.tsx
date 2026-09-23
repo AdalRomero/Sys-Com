@@ -10,10 +10,18 @@ import { estaOnline } from '../../../src/lib/conexion';
 import { localDb } from '../../../src/lib/localdb';
 import { hashPassword, generateSalt } from '../../../src/utils/crypto';
 import { useAuth } from '../../../src/context/AuthContext';
+import { useEffect } from 'react';
 
 function Login() {
     const navigate = useNavigate();
-    const { setOfflineSession } = useAuth();
+    const { user, setOfflineSession } = useAuth();
+
+    // Redirigir automáticamente si ya hay sesión (ej. en Modo Demo)
+    useEffect(() => {
+        if (user) {
+            navigate('/dashboard', { replace: true });
+        }
+    }, [user, navigate]);
 
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
     const [errorMessage, setErrorMessage] = useState('');

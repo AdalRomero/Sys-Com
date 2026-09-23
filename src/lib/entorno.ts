@@ -36,8 +36,10 @@ export function esDesktop(): boolean {
 /**
  * Indica si el sistema está ejecutándose en "Modo Demo" (público/portafolio),
  * lo que permite visualizar la aplicación saltándose el inicio de sesión.
+ * Si no se proveen las variables de Supabase, asumimos automáticamente que es Demo.
  */
 export function esModoDemo(): boolean {
   const flag = import.meta.env.VITE_MODO_DEMO;
-  return flag === 'true' || flag === true;
+  const noSupabase = !import.meta.env.VITE_SUPABASE_URL;
+  return flag === 'true' || flag === true || noSupabase;
 }
