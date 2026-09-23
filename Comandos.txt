@@ -1,0 +1,3 @@
+generar el .exe
+npm run tauri build
+

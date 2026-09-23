@@ -1,0 +1,399 @@
+/* login.css — Estilos exclusivos de la pantalla de Login */
+
+/* =============================================
+   Layout
+   ============================================= */
+.login-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background:
+        radial-gradient(circle at 78% 12%, rgba(47, 125, 246, 0.12), transparent 26%),
+        linear-gradient(135deg, #eef4fb 0%, #f8fbff 48%, #ffffff 100%);
+}
+
+/* Panel izquierdo con imagen */
+.login-panel-image {
+    position: relative;
+    width: 58%;
+    height: 100%;
+}
+
+.login-panel-image-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80%;
+    padding: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Panel derecho con formulario */
+.login-panel-form {
+    width: 42%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem;
+    color: var(--sys-text-dark);
+    /*background: rgba(255, 255, 255, 0.82);
+    box-shadow: -18px 0 44px -36px rgba(15, 23, 42, 0.45);*/
+}
+
+.login-form-inner {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form-box {
+    width: 100%;
+    max-width: 360px;
+    text-align: center;
+    padding: 28px;
+    border: 1px solid var(--sys-border);
+    border-radius: var(--sys-radius-xl);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(248, 251, 255, 0.95));
+    box-shadow: var(--sys-shadow-lg);
+}
+
+/* =============================================
+   Tipografía del Login
+   ============================================= */
+.login-welcome-overlay {
+    font-family: 'Montserrat', 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--sys-text-bglight);
+}
+
+.login-title {
+    font-family: 'Montserrat', 'Inter', sans-serif;
+    font-size: 1.875rem;
+    /* text-3xl */
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    color: var(--sys-text-dark);
+}
+
+.login-subtitle {
+    font-family: 'Raleway', 'Inter', sans-serif;
+    color: var(--sys-primary);
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+/* =============================================
+   Inputs del Login
+   ============================================= */
+.login-input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1.5px solid var(--sys-border);
+    border-radius: var(--sys-radius);
+    color: var(--sys-text-dark);
+    font-family: 'Open Sans', 'Inter', sans-serif;
+    font-size: 14px;
+    background: linear-gradient(180deg, #ffffff, #fbfdff);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    outline: none;
+}
+
+.login-input:focus {
+    border-color: var(--sys-primary);
+    background: white;
+    box-shadow: var(--sys-shadow-focus);
+}
+
+.login-input::placeholder {
+    color: var(--sys-text-light);
+}
+
+.password-input-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+.login-input-password {
+    margin-bottom: 0;
+    padding-right: 2.5rem;
+}
+
+.login-input-password::-ms-reveal,
+.login-input-password::-ms-clear {
+    display: none;
+}
+
+.password-toggle-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--sys-text-light);
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.password-toggle-btn:hover {
+    color: var(--sys-primary);
+}
+
+/* =============================================
+   Enlace "¿Olvidaste tu contraseña?"
+   ============================================= */
+.login-forgot {
+    display: block;
+    text-align: right;
+    color: var(--sys-primary-deep);
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Open Sans', 'Inter', sans-serif;
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.login-forgot:hover {
+    color: var(--sys-primary);
+}
+
+/* =============================================
+   Botones del Login
+   ============================================= */
+.login-btn-primary {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--sys-primary-bright), var(--sys-primary-deep));
+    color: #ffffff;
+    border: 1px solid rgba(18, 58, 143, 0.8);
+    border-radius: var(--sys-radius);
+    font-family: 'Open Sans', 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: var(--sys-shadow-button);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.login-btn-primary:hover {
+    background: linear-gradient(135deg, #3d8cff, var(--sys-primary-hover));
+    box-shadow: 0 16px 26px -14px rgba(26, 86, 219, 0.85);
+    transform: translateY(-1px);
+}
+
+.login-btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.login-btn-secondary {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1.5rem;
+    background: #ffffff;
+    color: var(--sys-primary-deep);
+    border: 1px solid var(--sys-border-strong);
+    border-radius: var(--sys-radius);
+    font-family: 'Open Sans', 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: var(--sys-shadow-sm);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.login-btn-secondary:hover {
+    border-color: var(--sys-primary);
+    color: var(--sys-primary);
+    box-shadow: var(--sys-shadow);
+    transform: translateY(-1px);
+}
+
+.login-btn-secondary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* =============================================
+   Imagen de fondo + recorte
+   ============================================= */
+.bg-astronaut {
+    background:
+        radial-gradient(ellipse at 50% 40%, #0d1a3a 0%, #060c1f 45%, #000000 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.bg-astronaut::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.06) 0%, transparent 60%),
+                radial-gradient(ellipse at 75% 20%, rgba(80,120,255,0.12) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.login-panel-logo {
+    position: relative;
+    z-index: 1;
+    width: 72%;
+    max-width: 480px;
+    filter: drop-shadow(0 8px 32px rgba(0,0,0,0.45));
+    animation: logoFadeIn 0.8s ease-out;
+}
+
+@keyframes logoFadeIn {
+    from { opacity: 0; transform: translateY(12px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.clip-diagonal {
+    clip-path: polygon(0 0, 100% 0, 82% 100%, 0% 100%);
+}
+
+/* =============================================
+   Avatar Loader
+   ============================================= */
+.avatar-container {
+    position: relative;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-container::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border-radius: 50%;
+    z-index: 0;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, var(--sys-primary), var(--sys-success));
+}
+
+.avatar-container.loading::before {
+    background: conic-gradient(from 0deg, transparent 0%, var(--sys-primary) 100%);
+    animation: spin 1s linear infinite;
+}
+
+.avatar-container.success::before {
+    background: var(--sys-success);
+}
+
+.avatar-container.error::before {
+    background: var(--sys-danger);
+    animation: shake 0.5s cubic-bezier(.36, .07, .19, .97) both;
+}
+
+/* Contenido interno del avatar (fondo oscuro + icono claro) */
+.avatar-content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--sys-primary-deep), #0f172a);
+}
+
+.avatar-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: #c8d6e8;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes shake {
+
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+/* Banner Animations */
+.animate-login-banner {
+    animation: loginBannerIn 0.3s ease-out forwards;
+}
+
+@keyframes loginBannerIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 900px) {
+    .login-wrapper {
+        min-height: 100vh;
+        height: auto;
+    }
+
+    .login-panel-image {
+        display: none;
+    }
+
+    .login-panel-form {
+        width: 100%;
+        min-height: 100vh;
+        padding: 1.5rem;
+    }
+
+    .login-form-box {
+        max-width: 420px;
+        padding: 24px;
+    }
+}

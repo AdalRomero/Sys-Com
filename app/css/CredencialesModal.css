@@ -1,0 +1,44 @@
+/* Contenedor principal dentro del modal */
+.credentials-container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Espaciado entre las filas del formulario */
+.credentials-row-spacing {
+    margin-top: 12px;
+}
+
+/* Grupo del input de usuario para manejar los mensajes inferiores */
+.username-field-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.username-status-checking {
+    font-size: 12px;
+    color: var(--sys-text-muted);
+    margin-top: 4px;
+}
+
+.username-status-error {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--sys-danger);
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+/* Caja de texto informativo del pie */
+.credentials-info-box {
+    padding: 10px 14px;
+    margin-top: 12px;
+}
+
+.credentials-info-text {
+    margin: 0;
+    font-size: 13px;
+    color: var(--sys-text-muted);
+    line-height: 1.4;
+}

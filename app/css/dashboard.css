@@ -1,0 +1,21 @@
+.contenedor-grid {
+    display: grid;
+    /* Por defecto: 4 en fila (desde pantallas grandes) */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+/* En tabletas: pasa a 2 en fila (evita el 3 y 1) */
+@media (max-width: 992px) {
+    .contenedor-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* En móviles: pasa a 1 en fila */
+@media (max-width: 576px) {
+    .contenedor-grid {
+        grid-template-columns: 1fr;
+    }
+}
